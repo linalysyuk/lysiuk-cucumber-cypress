@@ -1,10 +1,14 @@
-Feature: Displayed page section
+Feature: Product autopract
     Background:
-        Given Open product
+        Given Open autopract.com
         When Close modal letter
-    Scenario Outline: Open shop page
-        And Open section "<sectioName>" in shop header
-        Then Section is open
-    Examples:
-    | sectioName   |
-    | left sidebar |
+
+    Scenario: Open shop page main page dress
+        When Open section "no sidebar" in shop header
+        Then Page have banner "Fashion"
+       
+    @focus
+    Scenario Outline: Open main page dress
+        And Open section "no sidebar" in shop header
+        And Page have banner "Fashion"
+     

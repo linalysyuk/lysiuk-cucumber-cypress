@@ -1,20 +1,19 @@
-import {Given,When,Then} from "@badeball/cypress-cucumber-preprocessor";
-import header from "../../pages/loginPage"
-Given("Open product", () => {
-    cy.visit("/").viewport(1920,1080);
-  });
-When("Open section {string} in shop header", (sectionName) =>{
-    header.openShopMenu(sectionName);
+const { Given, When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import headers from "../pages/loginPage"
+
+Given ("Open autopract.com", () => {
+    cy.viewport(1920,1080)
+    cy.visit('/');
 });
+
 When("Close modal letter", () => {
-    cy.get(header.selectors.closeButtonStartModal).click();
+    cy.get(headers.selectors.closeModalWindow).click();
 });
-When("Open first result filter",() =>{
-    cy.get(header.selectors.elementFirstBlockResult).click();
-})
-When("Click button add to card",() =>{
-    cy.get(header.selectors.buttonAddToCard).click();
-})
-When("Section is open", () =>{
-    cy.get(header.selectors.containerPage).should("be.visible");
-}); 
+
+When ('Open section {string} in shop header', (section) => {
+    headers.openShopMenu(section)
+});
+
+Then ("Page have banner  {string}", (banner) => {
+    headers.OpenPageShop(banner)
+});
